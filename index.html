@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fieldville - Farm Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header Section -->
+        <header class="game-header">
+            <h1>🌾 Fieldville</h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">💰 Coins:</span>
+                    <span id="coins" class="stat-value">100</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">⭐ Level:</span>
+                    <span id="level" class="stat-value">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">✨ XP:</span>
+                    <span id="xp" class="stat-value">0</span>
+                    <span class="stat-label">/</span>
+                    <span id="xp-needed" class="stat-value">100</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <div class="game-main">
+            <!-- Shop Sidebar -->
+            <aside class="shop-panel">
+                <h2>🏪 Shop</h2>
+                <div class="shop-section">
+                    <h3>Seeds</h3>
+                    <div class="shop-items" id="seeds-shop">
+                        <!-- Seeds will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="shop-section">
+                    <h3>Animals</h3>
+                    <div class="shop-items" id="animals-shop">
+                        <button class="shop-item animal-item" data-animal="chicken">
+                            <div class="item-icon">🐔</div>
+                            <div class="item-name">Chicken</div>
+                            <div class="item-price">💰 150</div>
+                            <div class="item-desc">Eggs every 45s</div>
+                        </button>
+                        <button class="shop-item animal-item" data-animal="cow">
+                            <div class="item-icon">🐄</div>
+                            <div class="item-name">Cow</div>
+                            <div class="item-price">💰 500</div>
+                            <div class="item-desc">Milk every 90s</div>
+                        </button>
+                        <button class="shop-item animal-item" data-animal="pig">
+                            <div class="item-icon">🐷</div>
+                            <div class="item-name">Pig</div>
+                            <div class="item-price">💰 300</div>
+                            <div class="item-desc">Truffles every 75s</div>
+                        </button>
+                        <button class="shop-item animal-item" data-animal="sheep">
+                            <div class="item-icon">🐑</div>
+                            <div class="item-name">Sheep</div>
+                            <div class="item-price">💰 400</div>
+                            <div class="item-desc">Wool every 60s</div>
+                        </button>
+                        <button class="shop-item animal-item" data-animal="horse">
+                            <div class="item-icon">🐴</div>
+                            <div class="item-name">Horse</div>
+                            <div class="item-price">💰 800</div>
+                            <div class="item-desc">Ride faster!</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="shop-section">
+                    <h3>Buildings</h3>
+                    <div class="shop-items" id="buildings-shop">
+                        <button class="shop-item building-item" data-building="barn">
+                            <div class="item-icon">🏚️</div>
+                            <div class="item-name">Barn</div>
+                            <div class="item-price">💰 500</div>
+                            <div class="item-desc">Store crops</div>
+                        </button>
+                        <button class="shop-item building-item" data-building="silo">
+                            <div class="item-icon">🗼</div>
+                            <div class="item-name">Silo</div>
+                            <div class="item-price">💰 800</div>
+                            <div class="item-desc">Store feed</div>
+                        </button>
+                        <button class="shop-item building-item" data-building="well">
+                            <div class="item-icon">🌊</div>
+                            <div class="item-name">Well</div>
+                            <div class="item-price">💰 300</div>
+                            <div class="item-desc">Free water</div>
+                        </button>
+                        <button class="shop-item building-item" data-building="windmill">
+                            <div class="item-icon">🌾</div>
+                            <div class="item-name">Windmill</div>
+                            <div class="item-price">💰 1200</div>
+                            <div class="item-desc">2x harvest</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="shop-section">
+                    <h3>Decorations</h3>
+                    <div class="shop-items" id="decorations-shop">
+                        <button class="shop-item deco-item" data-deco="tree">
+                            <div class="item-icon">🌳</div>
+                            <div class="item-name">Tree</div>
+                            <div class="item-price">💰 50</div>
+                        </button>
+                        <button class="shop-item deco-item" data-deco="flower">
+                            <div class="item-icon">🌻</div>
+                            <div class="item-name">Flower</div>
+                            <div class="item-price">💰 30</div>
+                        </button>
+                        <button class="shop-item deco-item" data-deco="fence">
+                            <div class="item-icon">🚧</div>
+                            <div class="item-name">Fence</div>
+                            <div class="item-price">💰 20</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="shop-section">
+                    <h3>Tools</h3>
+                    <div class="shop-items">
+                        <button class="shop-item tool-item" id="plow-tool">
+                            <div class="item-icon">🚜</div>
+                            <div class="item-name">Plow</div>
+                            <div class="item-desc">Prepare soil</div>
+                        </button>
+                        <button class="shop-item tool-item" id="water-tool">
+                            <div class="item-icon">💧</div>
+                            <div class="item-name">Water</div>
+                            <div class="item-desc">Speed up growth</div>
+                        </button>
+                        <button class="shop-item tool-item" id="remove-tool">
+                            <div class="item-icon">❌</div>
+                            <div class="item-name">Remove</div>
+                            <div class="item-desc">Clear items</div>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Farm Grid -->
+            <main class="farm-area">
+                <div class="farm-controls">
+                    <div class="avatar-controls">
+                        <span>🎮 Move: WASD or Arrow Keys</span>
+                        <button id="teleport-home" class="control-btn small">🏠 Home</button>
+                    </div>
+                    <div class="selected-tool">
+                        <span>Selected: </span>
+                        <span id="current-tool">None</span>
+                    </div>
+                    <button id="clear-selection" class="control-btn">Clear Selection</button>
+                </div>
+                
+                <div class="farm-world">
+                    <!-- Fixed Buildings Area -->
+                    <div class="buildings-area">
+                        <div class="building farmhouse" id="farmhouse" data-building-type="house">
+                            <div class="building-icon">🏡</div>
+                            <div class="building-label">Farmhouse</div>
+                        </div>
+                        <div class="building shop-building" id="shop-building" data-building-type="shop">
+                            <div class="building-icon">🏪</div>
+                            <div class="building-label">Market</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dynamic Buildings (built by player) -->
+                    <div id="player-buildings" class="player-buildings"></div>
+                    
+                    <!-- Farm Grid -->
+                    <div id="farm-grid" class="farm-grid">
+                        <!-- Grid will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Avatar -->
+                    <div id="avatar" class="avatar">
+                        <div class="avatar-character">🧑‍🌾</div>
+                        <div class="avatar-name">Farmer</div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Info Panel -->
+            <aside class="info-panel">
+                <h2>📊 Farm Info</h2>
+                <div class="inventory-section">
+                    <h3>📦 Inventory</h3>
+                    <div id="inventory" class="inventory">
+                        <p>Empty</p>
+                    </div>
+                </div>
+                <div id="plot-info" class="plot-info">
+                    <p>Walk around your farm!</p>
+                    <p>Click on plots to interact</p>
+                </div>
+                <div class="tips-section">
+                    <h3>💡 Tips</h3>
+                    <ul>
+                        <li>Use WASD to move around</li>
+                        <li>Click buildings to interact</li>
+                        <li>Buy buildings from shop</li>
+                        <li>Decorate your farm!</li>
+                        <li>Build a barn to store crops</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Messages -->
+        <div id="message-container" class="message-container"></div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

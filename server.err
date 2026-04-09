@@ -1,0 +1,27 @@
+::1 - - [08/Apr/2026 18:37:46] "GET / HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 18:37:46] "GET /style.css HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 18:37:46] "GET /game.js HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 18:37:47] code 404, message File not found
+::1 - - [08/Apr/2026 18:37:47] "GET /favicon.ico HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [08/Apr/2026 19:00:51] "GET / HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:01:03] "GET /style.css HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:01:03] "GET /game.js HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:03:05] "GET / HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:03:05] "GET /style.css HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:03:05] "GET /game.js HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:03:05] code 404, message File not found
+::1 - - [08/Apr/2026 19:03:05] "GET /favicon.ico HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [08/Apr/2026 19:04:41] "GET / HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:04:58] "GET / HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:04:58] "GET /style.css HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:04:58] "GET /game.js HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:04:59] code 404, message File not found
+::1 - - [08/Apr/2026 19:04:59] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [08/Apr/2026 19:06:02] "GET / HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:06:03] "GET /style.css HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:06:03] "GET /game.js HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:07:22] "GET / HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:07:22] "GET /style.css HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:07:22] "GET /game.js HTTP/1.1" 200 -
+::1 - - [08/Apr/2026 19:07:22] code 404, message File not found
+::1 - - [08/Apr/2026 19:07:22] "GET /favicon.ico HTTP/1.1" 404 -

@@ -15,8 +15,8 @@ const game = {
     animals: [],
     gridSize: { rows: 8, cols: 10 },
     avatar: {
-        x: 100,
-        y: 100,
+        x: 390,
+        y: 305,
         moving: false,
         speed: 3
     },
@@ -187,6 +187,7 @@ function initGame() {
 function createFarmGrid() {
     const farmGrid = document.getElementById('farm-grid');
     farmGrid.innerHTML = '';
+    game.plots = [];
     
     for (let i = 0; i < game.gridSize.rows * game.gridSize.cols; i++) {
         const plot = {
@@ -202,10 +203,39 @@ function createFarmGrid() {
         const plotElement = document.createElement('div');
         plotElement.className = 'plot empty';
         plotElement.dataset.id = i;
+        plotElement.dataset.preview = ['berries', 'melons', 'peppers', 'greens', 'carrots', 'tomatoes'][
+            (Math.floor(i / game.gridSize.cols) + i) % 6
+        ];
+        plotElement.style.setProperty('--tile-row', Math.floor(i / game.gridSize.cols));
+        plotElement.style.setProperty('--tile-col', i % game.gridSize.cols);
         plotElement.addEventListener('click', () => handlePlotClick(i));
         
         farmGrid.appendChild(plotElement);
     }
+}
+
+function createPlotAsset(type, variant = '') {
+    const asset = document.createElement('span');
+    asset.className = `plot-asset ${type}${variant ? ` ${variant}` : ''}`;
+    return asset;
+}
+
+function cropStageClass(plot) {
+    const progress = 1 - (plot.growTime / plot.crop.growTime);
+
+    if (plot.state === PlotState.READY) {
+        return `crop-${plot.crop.id} crop-ready`;
+    }
+
+    if (progress < 0.33) {
+        return `crop-${plot.crop.id} crop-sprout`;
+    }
+
+    if (progress < 0.66) {
+        return `crop-${plot.crop.id} crop-young`;
+    }
+
+    return `crop-${plot.crop.id} crop-grown`;
 }
 
 // Populate Shop
@@ -814,16 +844,15 @@ function updatePlotDisplay(plotId) {
     } else if (plot.state === PlotState.PLOWED) {
         // Plowed
     } else if (plot.state === 'decoration') {
-        const deco = decorationTypes[plot.decoration];
-        plotElement.textContent = deco.icon;
+        plotElement.appendChild(createPlotAsset('deco', `deco-${plot.decoration}`));
     } else if (plot.state === 'animal') {
-        plotElement.textContent = plot.animal.icon;
+        plotElement.appendChild(createPlotAsset('animal', `animal-${plot.animal.type}`));
         
         // Show ready indicator for animals that produce
         if (plot.animal.isReady && plot.animal.type !== 'horse') {
             const readyIcon = document.createElement('div');
             readyIcon.className = 'animal-ready';
-            readyIcon.textContent = '✓ Ready!';
+            readyIcon.textContent = 'Ready!';
             plotElement.appendChild(readyIcon);
         } else if (plot.animal.type !== 'horse') {
             // Show timer
@@ -833,14 +862,7 @@ function updatePlotDisplay(plotId) {
             plotElement.appendChild(timer);
         }
     } else if (plot.state === PlotState.PLANTED) {
-        const progress = 1 - (plot.growTime / plot.crop.growTime);
-        if (progress < 0.33) {
-            plotElement.textContent = '🌱';
-        } else if (progress < 0.66) {
-            plotElement.textContent = '🌿';
-        } else {
-            plotElement.textContent = '🌾';
-        }
+        plotElement.appendChild(createPlotAsset('crop', cropStageClass(plot)));
         
         // Show timer
         const timer = document.createElement('div');
@@ -848,7 +870,7 @@ function updatePlotDisplay(plotId) {
         timer.textContent = plot.growTime + 's';
         plotElement.appendChild(timer);
     } else if (plot.state === PlotState.READY) {
-        plotElement.textContent = plot.crop.icon;
+        plotElement.appendChild(createPlotAsset('crop', cropStageClass(plot)));
     }
 }
 
